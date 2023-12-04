@@ -57,7 +57,7 @@ int get_match_count(string line) {
 
 int main(int argc, char *argv[]) {
     ifstream f("input");
-    vector<int> cards;
+    vector<int> cards, cache;
     vector<string> lines;
     string line;
     int match_count, total = 0;
@@ -66,10 +66,11 @@ int main(int argc, char *argv[]) {
         lines.push_back(line);
         total++;
         cards.push_back(total);
+        cache.push_back(get_match_count(line));
     }
 
     for (int i = 0; i < cards.size(); i++) {
-        match_count = get_match_count(lines[cards[i] - 1]);
+        match_count = cache[cards[i] - 1];
         cout << match_count << endl;
         total += match_count;
         for (int j = 1; j <= match_count; j++) {
