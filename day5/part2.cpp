@@ -7,9 +7,6 @@
 
 using namespace std;
 
-//                                                                          range_dest
-// range1: (77, 100)
-// range2: (74, 88)
 pair<long, long> get_interception(pair<long, long> range1,
                                   pair<long, long> range2) {
     long range1_x1 = range1.first;
@@ -61,12 +58,10 @@ get_not_intercepted(pair<long, long> range,
     return result;
 }
 
-//                       (src, dest), range
 vector<pair<long, long>>
 get_dests(pair<long, long> src_range,
           vector<pair<pair<long, long>, long>> srcdest_map) {
 
-    // code
     vector<pair<long, long>> ranges, intercepted, not_intercepted;
     pair<long, long> temp_range;
 
@@ -99,20 +94,6 @@ get_dests_for_srcs(vector<pair<long, long>> srcs,
     return result;
 }
 
-vector<long> input_nums(string line) {
-    vector<long> nums;
-    string token;
-    long loc;
-
-    while ((loc = line.find(" ")) != string::npos) {
-        token = line.substr(0, loc);
-        line.erase(0, loc + 1);
-        nums.push_back(stol(token));
-    }
-    nums.push_back(stol(line));
-    return nums;
-}
-
 vector<pair<long, long>>
 get_locations(vector<pair<long, long>> srcs,
               vector<vector<pair<pair<long, long>, long>>> srcdest_maps) {
@@ -130,6 +111,20 @@ vector<pair<long, long>> calc_seeds(vector<long> temp) {
     }
 
     return seeds;
+}
+
+vector<long> input_nums(string line) {
+    vector<long> nums;
+    string token;
+    long loc;
+
+    while ((loc = line.find(" ")) != string::npos) {
+        token = line.substr(0, loc);
+        line.erase(0, loc + 1);
+        nums.push_back(stol(token));
+    }
+    nums.push_back(stol(line));
+    return nums;
 }
 
 int main(int argc, char *argv[]) {
