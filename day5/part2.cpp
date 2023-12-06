@@ -18,16 +18,8 @@ pair<long, long> get_interception(pair<long, long> range1,
     long range2_x2 = range2.first + range2.second;
     pair<long, long> result;
 
-    cout << "************** interception ************" << endl;
-    cout << "range1: "
-         << "(" << range1.first << ", " << range1.second + range1.first << ")"
-         << endl;
-    cout << "range2: "
-         << "(" << range2.first << ", " << range2.second + range2.first << ")"
-         << endl;
     if ((range2_x1 < range1_x1 && range2_x2 < range1_x1) ||
         (range2_x1 > range1_x2 && range2_x2 > range1_x2)) {
-        cout << "********** no *****************" << endl;
         return pair<long, long>(-1, -1);
     }
 
@@ -40,11 +32,6 @@ pair<long, long> get_interception(pair<long, long> range1,
         result.second = range2_x2 - result.first;
     else
         result.second = range1_x2 - result.first;
-
-    cout << "interception: "
-         << "(" << result.first << ", " << result.second + result.first << ")"
-         << endl;
-    cout << "*****************************" << endl;
 
     return result;
 }
@@ -79,16 +66,6 @@ vector<pair<long, long>>
 get_dests(pair<long, long> src_range,
           vector<pair<pair<long, long>, long>> srcdest_map) {
 
-    // debug
-    cout << "(" << src_range.first << ", " << src_range.first + src_range.second
-         << "):" << endl;
-    for (auto i : srcdest_map) {
-        cout << "(" << i.first.first << ", " << i.first.first + i.second << ")"
-             << " : ";
-        cout << "(" << i.first.second << ", " << i.first.second + i.second
-             << ");" << endl;
-    }
-
     // code
     vector<pair<long, long>> ranges, intercepted, not_intercepted;
     pair<long, long> temp_range;
@@ -106,18 +83,8 @@ get_dests(pair<long, long> src_range,
         }
     }
 
-    cout << "-------------------- NOT INTERCEPTED --------------------" << endl;
-    for (auto i : intercepted)
-        cout << "(" << i.first << ", " << i.first + i.second << ")" << endl;
     not_intercepted = get_not_intercepted(src_range, intercepted);
-    cout << endl;
-    for (auto i : not_intercepted)
-        cout << "(" << i.first << ", " << i.first + i.second << ")" << endl;
-    cout << "---------------------------------------------------------" << endl;
     ranges.insert(ranges.end(), not_intercepted.begin(), not_intercepted.end());
-    for (auto i : ranges)
-        cout << "(" << i.first << ", " << i.first + i.second << ")" << endl;
-    cout << endl;
     return ranges;
 }
 
