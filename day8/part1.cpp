@@ -9,13 +9,10 @@ int count_steps(string path, map<string, pair<string, string>> nodes) {
     int total = 0, path_size = path.size();
 
     while (curr_node != "ZZZ") {
-        cout << "current: " << curr_node << endl;
-        cout << path[total % path_size] << endl;
         if (path[total % path_size] == 'R')
             curr_node = nodes[curr_node].second;
         else if (path[total % path_size] == 'L')
             curr_node = nodes[curr_node].first;
-        cout << "new: " << curr_node << endl << endl;
         total++;
     }
 
